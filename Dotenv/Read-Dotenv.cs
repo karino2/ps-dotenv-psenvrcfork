@@ -31,6 +31,16 @@ public class ReadDotenvCmd: PSCmdlet {
 	};
 
 	protected override void ProcessRecord() {
+		try {
+			var res = new PsenvrcEvaluator().Eval(this.data);
+			this.WriteObject(res);
+		} catch (Exception ex) {
+			this.WriteError(new ErrorRecord(ex, "Dotenv.ParseError", ErrorCategory.ParserError, null));
+		}
+	}
+
+	/*
+	protected override void ProcessRecord() {
 		foreach (var res in new Parser(this.data)) {
 			if (res.IsErr)
 				this.WriteError(new ErrorRecord(res.Err, "Dotenv.ParseError", ErrorCategory.ParserError, null));
@@ -38,4 +48,5 @@ public class ReadDotenvCmd: PSCmdlet {
 				this.WriteObject(res.Ok);
 		}
 	}
+	*/
 }

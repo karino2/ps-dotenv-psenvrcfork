@@ -1,7 +1,6 @@
 using Dotenv.Parsing;
 
 namespace Dotenv;
-using KVPair = KeyValuePair<string, string>;
 
 public readonly struct EnvVar {
 	public string Name { get; }
@@ -42,19 +41,17 @@ public class DotenvFile {
 		}
 	}
 
-	internal DotenvFile(string path, List<KVPair> entries) {
+	internal DotenvFile(string path, string psscript) {
 		this.FilePath = path;
 		this.Root = Path.GetDirectoryName(path);
 		this.Name = Path.GetFileName(path);
-		this._vars = new List<EnvVar>(entries.Count) { };
+
+		this._vars = new List<EnvVar>();
+
 
 		try {
-			foreach (var e in entries) {
-				var replaced = Environment.GetEnvironmentVariable(e.Key);
-				var expanded = e.Value;
-				Environment.SetEnvironmentVariable(e.Key, expanded);
-				this._vars.Add(new EnvVar(e.Key, expanded, replaced));
-			}
+			var parser = new PsenvrcEvaluator();
+			this._vars = parser.Eval(psscript);
 		} catch (VarUnsetException) {
 			for (var i = this._vars.Count - 1; i >= 0; i--) {
 				this._vars[i].unset();
@@ -62,6 +59,7 @@ public class DotenvFile {
 			throw;
 		}
 	}
+
 
 
 	internal void Unsource() {

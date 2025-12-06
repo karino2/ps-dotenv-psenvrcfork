@@ -4,13 +4,20 @@ using System.Text;
 
 namespace Dotenv {
 
-	using KVPair = KeyValuePair<string, string>;
-	public class PsenvrcParser {
+	public class PsenvrcEvaluator {
+		static void DebDict(IDictionary dict) {
+			foreach (DictionaryEntry kv in dict) {
+				string key = kv.Key.ToString() ?? "";
+				string value = kv.Value?.ToString() ?? "";
+				Console.WriteLine($"key={key}, value={value}");
+			}
+		}
 
 		/**
 		 * Execute psscript and return diff of current Environment and Env: in PowerShell object.
 		 * */
-		public List<KVPair> Parse(String psscript) {
+		public List<EnvVar> Eval(String psscript) {
+			IDictionary oldEnv = Environment.GetEnvironmentVariables();
 			using (PowerShell ps = PowerShell.Create()) {
 				ps.AddScript(psscript);
 				ps.Invoke();
@@ -19,10 +26,10 @@ namespace Dotenv {
 					throw BuildException(ps);
 				}
 
-				var ret = new List<KVPair>();
+				ps.Commands.Clear();
+				var ret = new List<EnvVar>();
 				var newEnv = ListEnv(ps);
 				HashSet<string> found = new HashSet<string>();
-				IDictionary oldEnv = Environment.GetEnvironmentVariables();
 				foreach (DictionaryEntry kv in oldEnv) {
 					string key = kv.Key.ToString() ?? "";
 					string value = kv.Value?.ToString() ?? "";
@@ -30,7 +37,12 @@ namespace Dotenv {
 					string? newVal = newEnv[key];
 					if (newVal == value)
 						continue;
-					ret.Add(new KVPair(key, newVal));
+					ret.Add(new EnvVar(key, newVal, value));
+				}
+				foreach (var kv in newEnv) {
+					if (found.Contains(kv.Key))
+						continue;
+					ret.Add(new EnvVar(kv.Key, kv.Value, ""));
 				}
 				return ret;
 

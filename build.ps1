@@ -24,7 +24,7 @@ function build-project($cfg = "debug", $out) {
 	}
 }
 
-$out = "$PSScriptRoot/bin/Dotenv"
+$out = "$PSScriptRoot/bin/Dotenvrc"
 
 if(test-path -pathType container $out) {
 	remove-item -recurse $out

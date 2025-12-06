@@ -1,7 +1,7 @@
 @{
-	RootModule = "Dotenv.psm1"
-	ModuleVersion = "1.1.0"
-	Author = "Taylan Gökkaya<insomnimus@proton.me>"
+	RootModule = "Dotenvrc.psm1"
+	ModuleVersion = "1.0.0"
+	Author = "Kazuma Arino<hogeika2@gmail.com>"
 	CompatiblePSEditions = @("Core")
 	GUID = '3bb5d7a3-985c-4d74-a329-8dddb075e322'
 	PowerShellVersion = "6.0"
@@ -17,6 +17,7 @@
 		"Deny-DotenvFile"
 		"Add-DotenvPattern"
 		"Remove-DotenvPattern"
+		"Debug-Dotenv"
 	)
 	CmdletsToExport = @("Read-Dotenv")
 	VariablesToExport = @("Dotenv")

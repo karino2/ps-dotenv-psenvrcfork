@@ -1,0 +1,3 @@
+$Env:Path += ';C:\Qt\6.8.3\msvc2022_64\bin\'
+$env:MY_QT_LIB_PATH = (qmake -query QT_INSTALL_LIBS).Trim()
+$env:MY_QT_INCLUDE_PATH = (qmake -query QT_INSTALL_HEADERS).Trim()

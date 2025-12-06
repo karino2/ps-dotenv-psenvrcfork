@@ -4,7 +4,6 @@ using Dotenv.Logging;
 using Dotenv.OSSpecific;
 
 namespace Dotenv;
-using KVPair = KeyValuePair<string, string>;
 
 public class Daemon {
 	public Daemon(string[]? whitelist = null, bool enabled = false, bool safe = true, bool quiet = false) {
@@ -195,18 +194,8 @@ public class Daemon {
 			try {
 				this.log.Info("sourcing file", f);
 				var data = File.ReadAllText(f);
-				var parser = new PsenvrcParser();
-				List<KVPair> entries;
 				try {
-					entries = parser.Parse(data);
-				}
-				catch(Exception e) {
-					this.log.Error($"parse error: {e}", f);
-					continue;
-				}
-
-				try {
-					this._sourced.Add(new DotenvFile(f, entries));
+					this._sourced.Add(new DotenvFile(f, data));
 				} catch (VarUnsetException e) {
 					this.log.Error(e.ToString(), f);
 				}

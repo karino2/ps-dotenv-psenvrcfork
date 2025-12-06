@@ -211,6 +211,10 @@ function Remove-DotenvPattern {
 	}
 }
 
+function Debug-Dotenv{
+	Write-Host "psnenvrc fork"
+}
+
 $exports = @{
 	Function = @(
 		"Update-Dotenv"
@@ -223,6 +227,7 @@ $exports = @{
 		"Deny-DotenvFile"
 		"Add-DotenvPattern"
 		"Remove-DotenvPattern"
+		"Debug-Dotenv"
 	)
 	Variable = "Dotenv"
 	Cmdlet = "Read-Dotenv"
