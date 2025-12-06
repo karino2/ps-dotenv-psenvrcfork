@@ -29,6 +29,7 @@
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
+    <PackageReference Include="System.Management.Automation" Version="7.5.4" />
   </ItemGroup>
 
   <ItemGroup>

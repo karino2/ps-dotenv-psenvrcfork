@@ -4,6 +4,7 @@ using Dotenv.Logging;
 using Dotenv.OSSpecific;
 
 namespace Dotenv;
+using KVPair = KeyValuePair<string, string>;
 
 public class Daemon {
 	public Daemon(string[]? whitelist = null, bool enabled = false, bool safe = true, bool quiet = false) {
@@ -18,7 +19,8 @@ public class Daemon {
 	public bool Async = true;
 
 	private bool _enabled = true;
-	private List<string> _names = new List<string>() { ".env" };
+	// private List<string> _names = new List<string>() { ".env" };
+	private List<string> _names = new List<string>() { ".psenvrc" };
 	private List<DotenvFile> _sourced = new List<DotenvFile>(32) { };
 	public bool SkipErrors = false;
 	private Logger log = new Logger();
@@ -132,7 +134,7 @@ public class Daemon {
 
 	public List<string> FindEnvFiles(string pwd) => this.findEnvFiles(pwd, false);
 
-	private void sourceFiles(List<string> files) {
+	private void sourceFilesDotenv(List<string> files) {
 		if (files is null || files.Count == 0) return;
 		var warned = false;
 
@@ -175,6 +177,47 @@ public class Daemon {
 
 		if (warned) System.Console.WriteLine("You can turn this message off by setting `$Dotenv.Quiet = $true`");
 	}
+
+	// psenvrc version.
+	private void sourceFiles(List<string> files) {
+		if (files is null || files.Count == 0) return;
+		var warned = false;
+
+		foreach (var f in files) {
+			if (this._safe && !this.auth.IsMatch(f)) {
+				if (!this.Quiet && this._warned.Add(f)) {
+					this.log.Info("unauthorized file not sourced while safe mode is on", f);
+					warned = true;
+					System.Console.WriteLine($"dotenv info: {f} is not authorized, authorize it with `Approve-DotenvFile` or disable the safe mode");
+				}
+				continue;
+			}
+			try {
+				this.log.Info("sourcing file", f);
+				var data = File.ReadAllText(f);
+				var parser = new PsenvrcParser();
+				List<KVPair> entries;
+				try {
+					entries = parser.Parse(data);
+				}
+				catch(Exception e) {
+					this.log.Error($"parse error: {e}", f);
+					continue;
+				}
+
+				try {
+					this._sourced.Add(new DotenvFile(f, entries));
+				} catch (VarUnsetException e) {
+					this.log.Error(e.ToString(), f);
+				}
+			} catch (Exception e) {
+				this.log.Exception(e, f);
+			}
+		}
+
+		if (warned) System.Console.WriteLine("You can turn this message off by setting `$Dotenv.Quiet = $true`");
+	}
+
 
 	public bool AddName(string name) {
 		if (this._names.Exists(x => x.Equals(name, Platform.StrComparison))) return false;
