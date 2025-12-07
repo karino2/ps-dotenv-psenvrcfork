@@ -1,123 +1,44 @@
-[direnv]: https://direnv.net/
+- PS-Dotenv: https://github.com/insomnimus/ps-dotenv
 
-# PS-Dotenv
-`Dotenv` is a feature complete and straightforward [direnv][] alternative for Powershell Core.
+# PS-Dotenv-Psenvrc fork
 
-It also exposes the parser as a separate project you can use in other code.
+This is the fork of `PS-Dotenv`, which support `.psenvrc` instead of `.env`. `.env` is not supported.
 
-## Stability
-Dotenv is stable and feature complete. the project is currently in maintain-only state. That means unless there's significant demand for a feature, only bug-fixes and other improvements will be added.
+`.psenvrc` is powershell script.
+Store diff of ENV: and unload when go out of directory.
 
-## Features
-- Complete syntax support including multiline strings and string interpolation.
--	Works on any platform where Powershell Core runs.
--	Logging with configurable log levels.
--	Option to turn the module on and off on the fly.
--	Option to add/remove custom filenames for auto sourcing of env files.
--	A subset of bash-like parameter expansion: `$val`, `${val}`, `${val?error}`, `${val+replacement}` and `${val-default}`.
-- Opt-in safe mode where files have to be explicitly allowd.
--	Smart loading and unloading env variables: you won't lose the previously set values upon unloading, the "replaced" values are remembered and kindly reset to their original values.
--	It just works the way you'd expect it to.
+Command Name is almost the same as PS-Dotenv though it's not `.env` anymore.
 
-## Use Case
-This module aims to provide the same functionality as [direnv][].
+No bash needs, proper unload after go out.
 
-Add `Update-Dotenv` in your `Prompt` function and as you navigate directories, Dotenv will source the appropriate env files in the current directory and its parents.
+## Done and Not-Done
 
-## Performance
-Probing for and loading of `.env` files is I/O bound. The parsing itself takes very little time (less than a millisecond on my znver3 cpu).
+DONE
 
-# Installation
-You have 3 options:
+- Load `.psenvrc` which exists in whitelist
+- Unload when go out of directory
 
-## (Windows) Via Scoop (recommended)
-First add [my bucket](https://github.com/insomnimus/scoop-bucket) to scoop:
+Not-DONE
 
-`scoop bucket add insomnia https://github.com/insomnimus/scoop-bucket`
+- store whitelist
 
-Install the module:
+## How to use it
 
-`scoop install ps-dotenv`
+In $PROFILE,
 
-## Download a Release Archive
-Simply download the latest release from [the releases page](https://github.com/insomnimus/ps-dotenv/releases).
-
-Download `Dotenv.zip`, extract and put the `Dotenv` directory under your `$PSModulePath` as with any other module.
-
-## Build From Source
-Make sure you have all the requirements installed:
-
--	`git`: To clone the repository.
--	`dotnet cli` with .NET SDK 8.0 or above: To build the project.
--	`Powershell` version 6.0 or above: To run the build script.
-
-To build the project, run the commands below.
-
-```powershell
-git clone https://github.com/insomnimus/ps-dotenv
-cd ps-dotenv
-git checkout main # This is sometimes  necessary
-./build.ps1 -release
-# Now import the module.
-Import-Module ./bin/Dotenv
+```PowerShell
+Import-Module Dotenvrc
+Invoke-Expression (Get-DotenvHook)
 ```
 
-# Usage
-For the env files to be automatically sourced, you'll need to configure your prompt to let `Dotenv` know you possibly changed directories.
+And `Approve-DotenvFile .psenvrc` for each file you want to approve. 
 
-You don't need to check if the current directory changed or if there are files that must be loaded since `Dotenv` takes care of that for you by keeping its own state.
-If you don't have a powershell profile setup yet, please read [this article from Microsoft](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.2) first.
+## .psenvrc example
 
-> Important: Dotenv is disabled by default. You need to enable it with `Enable-Dotenv` in your powershell profile.
+.psenvrc is PowerShell script, so you can call subcommand if you want.
 
-First, add this in your profile (don't forget to replace `C:\example\dotenv` with the actual path to the folder you built in above steps, or if Dotenv is in your module directory, replace the path with `Dotenv`):
-
-```powershell
-Import-Module C:\example\dotenv
-Enable-Dotenv # this is important, by default the module is disabled
+```PowerShell
+$Env:Path += ';C:\Qt\6.8.3\msvc2022_64\bin\'
+$env:MY_QT_LIB_PATH = (qmake -query QT_INSTALL_LIBS).Trim()
+$env:MY_QT_INCLUDE_PATH = (qmake -query QT_INSTALL_HEADERS).Trim()
 ```
-
-Depending on if you have a custom prompt follow one of the following steps:
-
-### If you already have a customized prompt
-You just have to add the following snippet inside your prompt function:
-
-```powershell
-# We check if the command exists to not cause errors.
-if(Test-Path function:/Update-Dotenv) { Dotenv\Update-Dotenv }
-```
-
-### If you haven't customized your prompt
-In your powershell profile, define a new prompt (the snippet below is the built-in prompt with dotenv enabled):
-
-```powershell
-function prompt {
-	# Print the built-in prompt:
-	$(if (Test-Path variable:/PSDebugContext) { '[DBG]: ' }
-		else { '' }) + 'PS ' + $(Get-Location) +
-	$(if ($NestedPromptLevel -ge 1) { '>>' }) + '> '
-
-	# We check if the command exists to not cause any errors.
-	if(Test-Path function:/Update-Dotenv) { Dotenv\Update-Dotenv }
-}
-```
-
-## Documentation
-
--	[All in one page](documentation.md)
--	[Individual command docs](docs/)
--	[Syntax](syntax.md)
-
-## Commands Overview
-- `Read-Dotenv`: Parses an env file. 
-- `Disable-Dotenv`: Disables the module without removing it from the session. 
-- `Enable-Dotenv`: Enables the module back. 
-- `Update-Dotenv`: Triggers the module to check for env files in the current and parent directories. 
-- `Approve-DotenvDir`: Whitelists a directory for dotenv. 
-- `Approve-DotenvFile`: Whitelists a particular env file for dotenv. 
-- `Deny-DotenvFile`: Unauthorizes an env file. 
-- `Register-DotenvName`: Adds a new name to the list of env file names this module will check for. 
-- `Unregister-DotenvName`: Removes a name from the list of names this module will consider as an env file. 
-- `Add-DotenvPattern`: Adds a glob pattern to the whitelist. 
-- `Remove-DotenvPattern`: Removes a pattern from the dotenv whitelist. 
-
