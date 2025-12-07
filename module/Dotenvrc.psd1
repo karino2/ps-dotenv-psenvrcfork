@@ -18,6 +18,8 @@
 		"Add-DotenvPattern"
 		"Remove-DotenvPattern"
 		"Debug-Dotenv"
+		"Disable-DotenvAsync"
+		"Get-DotenvHook"
 	)
 	CmdletsToExport = @("Read-Dotenv")
 	VariablesToExport = @("Dotenv")

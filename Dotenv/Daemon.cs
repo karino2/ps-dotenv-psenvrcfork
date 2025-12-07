@@ -17,7 +17,6 @@ public class Daemon {
 	public bool Async = true;
 
 	private bool _enabled = true;
-	// private List<string> _names = new List<string>() { ".env" };
 	private List<string> _names = new List<string>() { ".psenvrc" };
 	private List<DotenvFile> _sourced = new List<DotenvFile>(32) { };
 	public bool SkipErrors = false;

@@ -28,11 +28,23 @@ public class DotenvFile {
 
 		var parser = new PsenvrcEvaluator();
 		this._vars = parser.Eval(psscript);
+		if (this._vars.Count != 0) {
+			Console.WriteLine("Load:");
+			foreach (var v in this._vars) {
+				Console.WriteLine(v.Name);
+			}
+		}
 	}
 
 
 
 	internal void Unsource() {
+		if (this._vars.Count != 0) {
+			Console.WriteLine("Unload:");
+			foreach (var v in this._vars) {
+				Console.WriteLine(v.Name);
+			}
+		}
 		foreach (var v in this._vars) {
 			v.unset();
 		}

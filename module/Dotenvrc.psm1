@@ -27,6 +27,7 @@ function Update-Dotenv {
 	}
 	$script:lastdir = $pwd.providerpath
 	if(!$script:Dotenv.Enabled) {
+		Write-Host "dotenv: not enabled. Call Enable-Dotenv first."
 		return
 	}
 	if($script:Dotenv.Async) {
@@ -95,6 +96,29 @@ function Enable-Dotenv {
 function Disable-Dotenv {
 	$script:Dotenv.Enabled = $false
 }
+
+function Disable-DotenvAsync {
+	$script:Dotenv.Async = $false
+}
+
+function Get-DotenvHook {
+	@"
+if(Test-Path function:/Enable-Dotenv) {
+	Dotenvrc\Enable-Dotenv;
+	Dotenvrc\Disable-DotenvAsync;
+}
+
+function prompt {
+	# We check if the command exists to not cause any errors.
+	if(Test-Path function:/Update-Dotenv) { Dotenvrc\Update-Dotenv }
+
+	`$current = Get-Location
+	# 通常のプロンプトを返す
+	return "PS `$current> "
+}
+"@
+}
+
 
 function Approve-DotenvFile {
 	[CmdletBinding()]
@@ -228,6 +252,8 @@ $exports = @{
 		"Add-DotenvPattern"
 		"Remove-DotenvPattern"
 		"Debug-Dotenv"
+		"Disable-DotenvAsync"
+		"Get-DotenvHook"
 	)
 	Variable = "Dotenv"
 	Cmdlet = "Read-Dotenv"
