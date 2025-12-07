@@ -11,24 +11,36 @@ Command Name is almost the same as PS-Dotenv except that Dotenv becomes Dotenvrc
 
 No bash needs, proper unload after go out.
 
-## Done and Not-Done
-
-DONE
+## Supported features
 
 - Load `.psenvrc` which exists in whitelist
 - Unload when go out of directory
 - Store hash of approved .psenvrc 
 
-## How to use it
+## Install and setup
 
-In $PROFILE,
+### Install
+
+For install, use Install-Module from PowerShell Gallery.
+
+[PowerShell Gallery - Dotenvrc 1.0.0](https://www.powershellgallery.com/packages/Dotenvrc/1.0.0)
+
+```
+PS> Install-Module -Name Dotenvrc
+```
+
+### Setup
+
+In $PROFILE, write following
 
 ```PowerShell
 Import-Module Dotenvrc
 Invoke-Expression (Get-DotenvrcHook)
 ```
 
-And `Approve-Dotenvrc .psenvrc` for each file you want to approve. 
+### How to use it
+
+Write .psenvrc as you want, then call `Approve-Dotenvrc .` for each directory you want to approve. 
 
 ## .psenvrc example
 
