@@ -3,8 +3,8 @@ namespace Dotenv;
 public readonly struct EnvVar {
 	public string Name { get; }
 	public string Value { get; }
-	public string Replaced { get; }
-	public EnvVar(string name, string val, string replaced) => (this.Name, this.Value, this.Replaced) = (name, val, replaced);
+	public string? Replaced { get; }
+	public EnvVar(string name, string val, string? replaced) => (this.Name, this.Value, this.Replaced) = (name, val, replaced);
 
 	public override string ToString() => $"{this.Name} = {this.Value}";
 	internal void unset() => Environment.SetEnvironmentVariable(this.Name, this.Replaced);

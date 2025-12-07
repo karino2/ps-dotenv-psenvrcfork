@@ -42,7 +42,7 @@ namespace Dotenv {
 				foreach (var kv in newEnv) {
 					if (found.Contains(kv.Key))
 						continue;
-					ret.Add(new EnvVar(kv.Key, kv.Value, ""));
+					ret.Add(new EnvVar(kv.Key, kv.Value, null));
 				}
 				return ret;
 
