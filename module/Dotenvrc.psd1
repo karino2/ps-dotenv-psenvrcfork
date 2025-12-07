@@ -13,6 +13,7 @@
 		"Approve-Dotenvrc"
 		"Deny-Dotenvrc"
 		"Debug-Dotenvrc"
+		"Clear-Dotenvrc"
 		"Get-DotenvrcHook"
 	)
 	CmdletsToExport = @("Read-Dotenvrc")

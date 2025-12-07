@@ -99,6 +99,11 @@ public class Daemon {
 		this.sourceFiles(files);
 	}
 
+	public void ClearApprovedList() {
+		Clear();
+		auth.RemoveAll();
+	}
+
 	private List<string> findEnvFiles(string pwd, bool ignoreSourced) {
 		var files = new List<string>(32) { };
 		var dir = pwd;

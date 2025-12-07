@@ -108,6 +108,10 @@ function Deny-Dotenvrc {
 	}
 }
 
+function Clear-Dotenvrc {
+	$script:Dotenvrc.ClearApprovedList()
+}
+
 
 function Debug-Dotenvrc{
 	Write-Host "psnenvrc fork"
@@ -120,6 +124,7 @@ $exports = @{
 		"Disable-Dotenvrc"
 		"Approve-Dotenvrc"
 		"Deny-Dotenvrc"
+		"Clear-Dotenvrc"
 		"Debug-Dotenvrc"
 		"Get-DotenvrcHook"
 	)

@@ -88,6 +88,10 @@ internal class Whitelist {
 		}
 	}
 
-
-
+	internal void RemoveAll() {
+		foreach(var fpair in ListAllows()) {
+			File.Delete(Path.Combine(GetConfigDir(), fpair.Value));
+		}
+		_allows.Clear();
+	}
 }
