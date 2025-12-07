@@ -7,15 +7,15 @@
 	PowerShellVersion = "6.0"
 
 	FunctionsToExport = @(
-		"Update-Dotenv"
-		"Enable-Dotenv"
-		"Disable-Dotenv"
-		"Approve-DotenvFile"
-		"Deny-DotenvFile"
-		"Debug-Dotenv"
-		"Get-DotenvHook"
+		"Update-Dotenvrc"
+		"Enable-Dotenvrc"
+		"Disable-Dotenvrc"
+		"Approve-Dotenvrc"
+		"Deny-Dotenvrc"
+		"Debug-Dotenvrc"
+		"Get-DotenvrcHook"
 	)
-	CmdletsToExport = @("Read-Dotenv")
+	CmdletsToExport = @("Read-Dotenvrc")
 	VariablesToExport = @("Dotenv")
 	AliasesToExport = @()
 

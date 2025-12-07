@@ -2,7 +2,7 @@ New-Variable -Option ReadOnly Dotenv ([Dotenv.Daemon]::new())
 
 $ExecutionContext.SessionState.Module.OnRemove += {
 	if($global:Dotenv.Enabled) {
-		Write-Host "dotenv: unloading..."
+		Write-Host "dotenvrc: unloading..."
 		$global:Dotenv.Disable()
 		remove-item -force -ea silentlyContinue variable:/Dotenv
 	}
@@ -10,10 +10,10 @@ $ExecutionContext.SessionState.Module.OnRemove += {
 
 [string]$lastdir = ""
 
-function Update-Dotenv {
+function Update-Dotenvrc {
 	[CmdletBinding()]
 	param (
-		[Parameter(HelpMessage = "Forces the module to reload every env file if any.")]
+		[Parameter(HelpMessage = "Forces the module to reload every psenvrc file if any.")]
 		[switch]$Force
 	)
 	if($pwd.provider.name -ne "FileSystem" -or (!$force -and $pwd.providerpath -eq $script:lastdir)) {
@@ -21,7 +21,7 @@ function Update-Dotenv {
 	}
 	$script:lastdir = $pwd.providerpath
 	if(!$script:Dotenv.Enabled) {
-		Write-Host "dotenv: not enabled. Call Enable-Dotenv first."
+		Write-Host "dotenvrc: not enabled. Call Enable-Dotenvrc first."
 		return
 	}
 	if($force) {
@@ -30,23 +30,23 @@ function Update-Dotenv {
 	$script:dotenv.update($pwd.providerpath)
 }
 
-function Enable-Dotenv {
+function Enable-Dotenvrc {
 	$script:Dotenv.Enabled = $true
 }
 
-function Disable-Dotenv {
+function Disable-Dotenvrc {
 	$script:Dotenv.Enabled = $false
 }
 
-function Get-DotenvHook {
+function Get-DotenvrcHook {
 	@"
-if(Test-Path function:/Enable-Dotenv) {
-	Dotenvrc\Enable-Dotenv;
+if(Test-Path function:/Enable-Dotenvrc) {
+	Dotenvrc\Enable-Dotenvrc;
 }
 
 function prompt {
 	# We check if the command exists to not cause any errors.
-	if(Test-Path function:/Update-Dotenv) { Dotenvrc\Update-Dotenv }
+	if(Test-Path function:/Update-Dotenvrc) { Dotenvrc\Update-Dotenvrc }
 
 	`$current = Get-Location
 	# return normal prompt, maybe we should elaborate here.
@@ -56,13 +56,13 @@ function prompt {
 }
 
 
-function Approve-DotenvFile {
+function Approve-Dotenvrc {
 	[CmdletBinding()]
 	param(
 		[Parameter(
 			Mandatory,
 			Position = 0,
-			HelpMessage = "Path to an env file or a directory to whitelist."
+			HelpMessage = "Path to an psenvrc file or a directory to whitelist."
 		)]
 		[string[]]$Path
 	)
@@ -82,13 +82,13 @@ function Approve-DotenvFile {
 }
 
 
-function Deny-DotenvFile {
+function Deny-Dotenvrc {
 	[CmdletBinding()]
 	param(
 		[Parameter(
 			Mandatory,
 			Position = 0,
-			HelpMessage = "Path to an env file to deny."
+			HelpMessage = "Path to an psenvrc file to deny."
 		)]
 		[ArgumentCompleter({ $script:Dotenv.WhitePaths | where-object { [WildcardPattern]::ContainsWildcardCharacters("$_") } | sort-object })]
 		[string[]]$Path
@@ -109,22 +109,22 @@ function Deny-DotenvFile {
 }
 
 
-function Debug-Dotenv{
+function Debug-Dotenvrc{
 	Write-Host "psnenvrc fork"
 }
 
 $exports = @{
 	Function = @(
-		"Update-Dotenv"
-		"Enable-Dotenv"
-		"Disable-Dotenv"
-		"Approve-DotenvFile"
-		"Deny-DotenvFile"
-		"Debug-Dotenv"
-		"Get-DotenvHook"
+		"Update-Dotenvrc"
+		"Enable-Dotenvrc"
+		"Disable-Dotenvrc"
+		"Approve-Dotenvrc"
+		"Deny-Dotenvrc"
+		"Debug-Dotenvrc"
+		"Get-DotenvrcHook"
 	)
 	Variable = "Dotenv"
-	Cmdlet = "Read-Dotenv"
+	Cmdlet = "Read-Dotenvrc"
 }
 
 Export-ModuleMember @exports

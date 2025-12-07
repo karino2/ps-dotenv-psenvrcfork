@@ -2,9 +2,9 @@ using System.Management.Automation;
 
 namespace Dotenv;
 
-[Cmdlet(VerbsCommunications.Read, "Dotenv", DefaultParameterSetName = "file")]
+[Cmdlet(VerbsCommunications.Read, "Dotenvrc", DefaultParameterSetName = "file")]
 [OutputType(typeof(EnvVar))]
-public class ReadDotenvCmd: PSCmdlet {
+public class ReadDotenvrcCmd: PSCmdlet {
 	[Parameter(
 	HelpMessage = "Path to a env file.",
 		Mandatory = true,
@@ -34,7 +34,7 @@ public class ReadDotenvCmd: PSCmdlet {
 			var res = new PsenvrcEvaluator().Eval(this.data);
 			this.WriteObject(res);
 		} catch (Exception ex) {
-			this.WriteError(new ErrorRecord(ex, "Dotenv.ParseError", ErrorCategory.ParserError, null));
+			this.WriteError(new ErrorRecord(ex, "Dotenvrc.ParseError", ErrorCategory.ParserError, null));
 		}
 	}
 }
