@@ -14,7 +14,6 @@ public class Daemon {
 	}
 
 	private bool _enabled = true;
-	private List<string> _names = new List<string>() { ".psenvrc" };
 	private string _name = ".psenvrc";
 	private List<DotenvFile> _sourced = new List<DotenvFile>(32) { };
 	public bool SkipErrors = false;
