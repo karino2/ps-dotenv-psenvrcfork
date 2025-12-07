@@ -35,5 +35,6 @@ build-project $cfg $out
 
 if($lastexitcode -eq 0) {
 	copy-item -recurse -force "$PSScriptRoot/module/*" $out
+	remove-item "$out/build_doc.ps1"
 	echo "built the module into $out"
 }
