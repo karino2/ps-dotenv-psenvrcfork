@@ -20,7 +20,7 @@ These are its fields:
 -	`SkipErrors`: If set to true, errors encountered during parsing env files will cause the parser to skip to the next line instead of returning.
 -	`SafeMode`: If enabled, only the files explicitly allowed will be sourced.
 -	`Quiet`: If set to `$true`, disables info messages while the safe mode is enabled and there are unauthorized files in the current directory or its parents.
--	`AuthorizedPatterns`: A read-only list containing the patterns you whitelisted.
+
 ## Read-Dotenv
 Parses an env file. The parsed variables are not sourced, the caller is expected to do it. You don't have to call this command, the module uses it under the hood.
 

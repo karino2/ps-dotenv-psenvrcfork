@@ -5,12 +5,12 @@ using Dotenv.OSSpecific;
 namespace Dotenv;
 
 public class Daemon {
-	public Daemon(string[]? whitelist = null, bool enabled = false, bool safe = true, bool quiet = false) {
+	public Daemon(bool enabled = false, bool safe = true, bool quiet = false) {
 		this.Quiet = quiet;
 		this._enabled = enabled;
 		this._safe = safe;
 		this._warned = new HashSet<string>(Platform.StrComparer);
-		this.auth = new Whitelist(whitelist);
+		this.auth = Whitelist.FromConfigDir();
 	}
 
 	// Members that are used in the module but not here.
@@ -27,7 +27,7 @@ public class Daemon {
 		set => this.log.Preference = value;
 	}
 	private Whitelist auth;
-	public ICollection<string> AuthorizedPatterns => this.auth.Patterns;
+	public ICollection<string> WhitePaths => this.auth.WhitePaths;
 	private bool _safe = true;
 	public bool SafeMode {
 		get => this._safe;

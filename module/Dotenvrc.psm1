@@ -154,7 +154,7 @@ function Deny-DotenvFile {
 			Position = 0,
 			HelpMessage = "Path to an env file to deny."
 		)]
-		[ArgumentCompleter({ $script:Dotenv.AuthorizedPatterns | where-object { [WildcardPattern]::ContainsWildcardCharacters("$_") } | sort-object })]
+		[ArgumentCompleter({ $script:Dotenv.WhitePaths | where-object { [WildcardPattern]::ContainsWildcardCharacters("$_") } | sort-object })]
 		[string[]]$Path
 	)
 	$yes = $false
