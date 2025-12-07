@@ -1,8 +1,8 @@
 - PS-Dotenv: https://github.com/insomnimus/ps-dotenv
 
-# PS-Dotenvrc, Psenvrc fork of dotenv
+# PS-Dotenvrc, dotenv fork to support psenvrc.
 
-This is the fork of `PS-Dotenv`, which support `.psenvrc` instead of `.env`. `.env` is not supported.
+This module is the fork of `PS-Dotenv`. This module support `.psenvrc` instead of `.env`. (`.env` is not supported).
 
 `.psenvrc` is powershell script.
 Store diff of ENV: and unload when go out of directory.
