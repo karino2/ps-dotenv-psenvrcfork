@@ -38,9 +38,3 @@ Whitelists a particular env file for dotenv. This only has an effect with the sa
 
 ## Deny-DotenvFile
 Removes a file from the list of authorized files. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.
-
-## Register-DotenvName
-Adds a new name to the list of env file names this module will check for. Equivalent to `$Dotenv.AddName()`.
-
-## Unregister-DotenvName
-Removes a name from the list of names this module will consider as an env file. Equivalent to `$Dotenv.RemoveName()`.

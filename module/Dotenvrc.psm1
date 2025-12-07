@@ -50,45 +50,6 @@ function Update-Dotenv {
 	}
 }
 
-class UnregisterDotenvNameValidator: System.Management.Automation.IValidateSetValuesGenerator {
-	[string[]] GetValidValues() {
-		return $script:dotenv.names
-	}
-}
-
-function Register-DotenvName {
-	[CmdletBinding()]
-	param(
-		[Parameter(Mandatory, Position = 0, HelpMessage = "The name to add. The name must be a valid filename and not a path.")]
-		[ValidateScript({
-				foreach($c in ([System.IO.Path]::GetInvalidFilenameChars())) {
-					if($_.contains($c)) { return $false }
-				}
-				$true
-			})]
-		[string]$Name
-	)
-	if($script:Dotenv.AddName($name)) {
-		write-information "added $name"
-	} else {
-		write-warning "$name already exists"
-	}
-}
-
-function Unregister-DotenvName {
-	[CmdletBinding()]
-	param(
-		[Parameter(Mandatory, Position = 0, HelpMessage = "The name to remove.")]
-		[ValidateSet([UnregisterDotenvNameValidator])]
-		[string]$Name
-	)
-	if($script:Dotenv.RemoveName($name)) {
-		write-information "removed $name"
-	} else {
-		write-warning "$name does not exist"
-	}
-}
-
 function Enable-Dotenv {
 	$script:Dotenv.Enabled = $true
 }
@@ -180,8 +141,6 @@ function Debug-Dotenv{
 $exports = @{
 	Function = @(
 		"Update-Dotenv"
-		"Register-DotenvName"
-		"Unregister-DotenvName"
 		"Enable-Dotenv"
 		"Disable-Dotenv"
 		"Approve-DotenvFile"

@@ -8,8 +8,6 @@
 
 	FunctionsToExport = @(
 		"Update-Dotenv"
-		"Register-DotenvName"
-		"Unregister-DotenvName"
 		"Enable-Dotenv"
 		"Disable-Dotenv"
 		"Approve-DotenvFile"

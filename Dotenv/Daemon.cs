@@ -158,25 +158,6 @@ public class Daemon {
 	}
 
 
-	public bool AddName(string name) {
-		if (this._names.Exists(x => x.Equals(name, Platform.StrComparison))) return false;
-		foreach (var c in Path.GetInvalidFileNameChars()) {
-			if (name.Contains(c)) throw new ArgumentException("the name can't contain path separators, drive separators or any other illegal path character", "name");
-		}
-		this._names.Add(name);
-		this.Clear();
-		this.Update(this.lastdir);
-		return true;
-	}
-
-	public bool RemoveName(string name) {
-		var n = this._names.RemoveAll(x => x.Equals(name, Platform.StrComparison));
-		if (n == 0) return false;
-		this.Clear();
-		this.Update(this.lastdir);
-		return true;
-	}
-
 	public bool AuthorizePattern(string path, bool update = false) {
 		var fullpath = Path.GetFullPath(path);
 		var ok = this.auth.Add(fullpath);
