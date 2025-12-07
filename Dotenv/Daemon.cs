@@ -1,5 +1,4 @@
 using Dotenv.MemoryBuffer;
-using Dotenv.Parsing;
 using Dotenv.Logging;
 using Dotenv.OSSpecific;
 
@@ -133,50 +132,6 @@ public class Daemon {
 
 	public List<string> FindEnvFiles(string pwd) => this.findEnvFiles(pwd, false);
 
-	private void sourceFilesDotenv(List<string> files) {
-		if (files is null || files.Count == 0) return;
-		var warned = false;
-
-		foreach (var f in files) {
-			if (this._safe && !this.auth.IsMatch(f)) {
-				if (!this.Quiet && this._warned.Add(f)) {
-					this.log.Info("unauthorized file not sourced while safe mode is on", f);
-					warned = true;
-					System.Console.WriteLine($"dotenv info: {f} is not authorized, authorize it with `Approve-DotenvFile` or disable the safe mode");
-				}
-				continue;
-			}
-			try {
-				this.log.Info("sourcing file", f);
-				var data = File.ReadAllText(f);
-				var entries = new List<Entry>();
-				var err = false;
-				foreach (var res in new Parser(data)) {
-					if (res.IsErr) {
-						this.log.Error($"parse error: {res.Err}", f);
-						if (!this.SkipErrors) {
-							err = true;
-							break;
-						}
-					} else {
-						entries.Add(res.Ok);
-					}
-				}
-				if (err || entries.Count == 0) continue;
-
-				try {
-					this._sourced.Add(new DotenvFile(f, entries));
-				} catch (VarUnsetException e) {
-					this.log.Error(e.ToString(), f);
-				}
-			} catch (Exception e) {
-				this.log.Exception(e, f);
-			}
-		}
-
-		if (warned) System.Console.WriteLine("You can turn this message off by setting `$Dotenv.Quiet = $true`");
-	}
-
 	// psenvrc version.
 	private void sourceFiles(List<string> files) {
 		if (files is null || files.Count == 0) return;
@@ -194,11 +149,7 @@ public class Daemon {
 			try {
 				this.log.Info("sourcing file", f);
 				var data = File.ReadAllText(f);
-				try {
-					this._sourced.Add(new DotenvFile(f, data));
-				} catch (VarUnsetException e) {
-					this.log.Error(e.ToString(), f);
-				}
+				this._sourced.Add(new DotenvFile(f, data));
 			} catch (Exception e) {
 				this.log.Exception(e, f);
 			}

@@ -1,5 +1,3 @@
-using Dotenv.Parsing;
-
 namespace Dotenv;
 
 public readonly struct EnvVar {
@@ -20,44 +18,16 @@ public class DotenvFile {
 
 	public IList<EnvVar> Vars => this._vars.AsReadOnly();
 
-	internal DotenvFile(string path, List<Entry> entries) {
-		this.FilePath = path;
-		this.Root = Path.GetDirectoryName(path);
-		this.Name = Path.GetFileName(path);
-		this._vars = new List<EnvVar>(entries.Count) { };
-
-		try {
-			foreach (var e in entries) {
-				var replaced = Environment.GetEnvironmentVariable(e.Name);
-				var expanded = e.ExpandValue();
-				Environment.SetEnvironmentVariable(e.Name, expanded);
-				this._vars.Add(new EnvVar(e.Name, expanded, replaced));
-			}
-		} catch (VarUnsetException) {
-			for (var i = this._vars.Count - 1; i >= 0; i--) {
-				this._vars[i].unset();
-			}
-			throw;
-		}
-	}
-
 	internal DotenvFile(string path, string psscript) {
 		this.FilePath = path;
-		this.Root = Path.GetDirectoryName(path);
+		this.Root = Path.GetDirectoryName(path) ??　"";
 		this.Name = Path.GetFileName(path);
 
 		this._vars = new List<EnvVar>();
 
 
-		try {
-			var parser = new PsenvrcEvaluator();
-			this._vars = parser.Eval(psscript);
-		} catch (VarUnsetException) {
-			for (var i = this._vars.Count - 1; i >= 0; i--) {
-				this._vars[i].unset();
-			}
-			throw;
-		}
+		var parser = new PsenvrcEvaluator();
+		this._vars = parser.Eval(psscript);
 	}
 
 
