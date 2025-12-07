@@ -13,9 +13,6 @@ public class Daemon {
 		this.auth = Whitelist.FromConfigDir();
 	}
 
-	// Members that are used in the module but not here.
-	public bool Async = true;
-
 	private bool _enabled = true;
 	private List<string> _names = new List<string>() { ".psenvrc" };
 	private List<DotenvFile> _sourced = new List<DotenvFile>(32) { };

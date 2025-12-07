@@ -10,12 +10,6 @@ $ExecutionContext.SessionState.Module.OnRemove += {
 
 [string]$lastdir = ""
 
-function Clear-DotenvJobs {
-	Get-Job -State Completed `
-	| Where-Object { $_.name -eq "Dotenv" } `
-	| Remove-Job
-}
-
 function Update-Dotenv {
 	[CmdletBinding()]
 	param (
@@ -30,24 +24,10 @@ function Update-Dotenv {
 		Write-Host "dotenv: not enabled. Call Enable-Dotenv first."
 		return
 	}
-	if($script:Dotenv.Async) {
-		Clear-DotenvJobs
-		$null = Start-ThreadJob -Name "Dotenv" -ArgumentList $script:Dotenv, $force {
-			param(
-				[Dotenv.Daemon]$Daemon,
-				[bool]$force
-			)
-			if($force) {
-				$daemon.Clear()
-			}
-			$Daemon.Update($pwd.providerpath)
-		}
-	} else {
-		if($force) {
-			$script:dotenv.clear()
-		}
-		$script:dotenv.update($pwd.providerpath)
+	if($force) {
+		$script:dotenv.clear()
 	}
+	$script:dotenv.update($pwd.providerpath)
 }
 
 function Enable-Dotenv {
@@ -58,15 +38,10 @@ function Disable-Dotenv {
 	$script:Dotenv.Enabled = $false
 }
 
-function Disable-DotenvAsync {
-	$script:Dotenv.Async = $false
-}
-
 function Get-DotenvHook {
 	@"
 if(Test-Path function:/Enable-Dotenv) {
 	Dotenvrc\Enable-Dotenv;
-	Dotenvrc\Disable-DotenvAsync;
 }
 
 function prompt {
@@ -74,7 +49,7 @@ function prompt {
 	if(Test-Path function:/Update-Dotenv) { Dotenvrc\Update-Dotenv }
 
 	`$current = Get-Location
-	# 通常のプロンプトを返す
+	# return normal prompt, maybe we should elaborate here.
 	return "PS `$current> "
 }
 "@
@@ -146,7 +121,6 @@ $exports = @{
 		"Approve-DotenvFile"
 		"Deny-DotenvFile"
 		"Debug-Dotenv"
-		"Disable-DotenvAsync"
 		"Get-DotenvHook"
 	)
 	Variable = "Dotenv"

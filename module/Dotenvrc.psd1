@@ -13,7 +13,6 @@
 		"Approve-DotenvFile"
 		"Deny-DotenvFile"
 		"Debug-Dotenv"
-		"Disable-DotenvAsync"
 		"Get-DotenvHook"
 	)
 	CmdletsToExport = @("Read-Dotenv")
