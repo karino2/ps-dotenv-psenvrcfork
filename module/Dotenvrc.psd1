@@ -3,7 +3,7 @@
 	ModuleVersion = "1.0.0"
 	Author = "Kazuma Arino<hogeika2@gmail.com>"
 	CompatiblePSEditions = @("Core")
-	GUID = '3bb5d7a3-985c-4d74-a329-8dddb075e322'
+	GUID = '16dd6f1b-7e4e-45fb-80d4-fbc5b18ad0a5'
 	PowerShellVersion = "6.0"
 
 	FunctionsToExport = @(
@@ -23,5 +23,5 @@
 	VariablesToExport = @("Dotenv")
 	AliasesToExport = @()
 
-	NestedModules = @("Dotenv.dll")
+	NestedModules = @("Dotenvrc.dll")
 }
