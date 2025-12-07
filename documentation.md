@@ -36,3 +36,11 @@ Whitelists a particular env file for dotenv. This only has an effect with the sa
 
 ## Deny-Dotenvrc
 Removes a file from the list of authorized files. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.
+
+## Clear-Dotenvrc
+Clear all approved files info and unload all environment variables loaded by .psenvrc.
+
+## Get-DotenvrcHook
+Show default hook code for PS-Dotenvrc.
+This code is custom prompt function which call Update-Dotenvrc for each prompt.
+Use this function with Invoke-Expression in $PROFILE file for setup.

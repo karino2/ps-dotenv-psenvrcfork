@@ -76,6 +76,63 @@ PS C:\&gt; Approve-Dotenvrc ~\.psenvrc
   </command:command>
   <command:command>
     <command:details>
+      <command:name>Clear-Dotenvrc</command:name>
+      <maml:description>
+        <maml:para>Clear all approved info and unload all variables.</maml:para>
+      </maml:description>
+      <command:verb>Clear</command:verb>
+      <command:noun>Dotenvrc</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Clear all approved files info and unload all environment variables loaded by .psenvrc.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Clear-Dotenvrc</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>None</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>System.Object</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Clear-Dotenvrc
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
       <command:name>Deny-Dotenvrc</command:name>
       <maml:description>
         <maml:para>Unauthorizes an env file.</maml:para>
@@ -254,6 +311,63 @@ PS C:\&gt; Disable-Dotenvrc
         <maml:introduction>
           <maml:para>```powershell
 PS C:\&gt; Enable-Dotenvrc
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-DotenvrcHook</command:name>
+      <maml:description>
+        <maml:para>Show default hook code for PS-Dotenvrc</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>DotenvrcHook</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Show default hook code for PS-Dotenvrc. This code is custom prompt function which call Update-Dotenvrc for each prompt. Use this function with Invoke-Expression in $PROFILE file for setup.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DotenvrcHook</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <dev:name>None</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <dev:name>System.String</dev:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Invoke-Expression (Get-DotenvrcHook)
 ```</maml:para>
         </maml:introduction>
         <dev:code />
