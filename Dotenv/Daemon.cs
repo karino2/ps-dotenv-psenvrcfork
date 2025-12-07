@@ -195,11 +195,4 @@ public class Daemon {
 		}
 		return ok;
 	}
-
-	public bool AuthorizeDirectory(string dir, bool update = false) {
-		var fullpath = Path.GetFullPath(dir);
-		var ok = this.auth.AddDir(fullpath);
-		if (ok && update) this.Update(this.lastdir);
-		return ok;
-	}
 }

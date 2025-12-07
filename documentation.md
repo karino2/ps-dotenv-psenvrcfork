@@ -33,9 +33,6 @@ Enables the module back. Equivalent to `$Dotenv.Enabled = $true`.
 ## Update-Dotenv
 Triggers the module to check for env files in the current and parent directories. This is the entrypoint to this module. This command is meant to be called automatically by your `Prompt` function.
 
-## Approve-DotenvDir
-Whitelists a directory for dotenv. Every existing and future env files under the directory (recursively) will be allowed. This only has an effect with the safe mode enabled.
-
 ## Approve-DotenvFile
 Whitelists a particular env file for dotenv. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.
 
@@ -47,9 +44,3 @@ Adds a new name to the list of env file names this module will check for. Equiva
 
 ## Unregister-DotenvName
 Removes a name from the list of names this module will consider as an env file. Equivalent to `$Dotenv.RemoveName()`.
-
-## Add-DotenvPattern
-Adds a glob pattern to the whitelist. This only has an effect with the safe mode enabled.
-
-## Remove-DotenvPattern
-Removes an entry from the Dotenv whitelist. This only has an effect with the safe mode enabled.

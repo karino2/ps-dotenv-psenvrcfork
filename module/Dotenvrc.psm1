@@ -145,25 +145,6 @@ function Approve-DotenvFile {
 	}
 }
 
-function Approve-DotenvDir {
-	[CmdletBinding()]
-	param(
-		[Parameter(
-			Mandatory,
-			Position = 0,
-			HelpMessage = "A directory to whitelist; every file under it will be recursively allowed."
-		)]
-		[ValidateScript({ (test-path -type container $_) -or (throw "path must target to an existing directory") })]
-		[string[]]$Path
-	)
-	$yes = $false
-	foreach($p in $path) {
-		$yes = $script:Dotenv.AuthorizeDirectory([System.IO.Path]::GetFullPath($p, $pwd.providerpath)) -or $yes
-	}
-	if($yes) {
-		script:update-dotenv -force
-	}
-}
 
 function Deny-DotenvFile {
 	[CmdletBinding()]
@@ -191,49 +172,6 @@ function Deny-DotenvFile {
 	}
 }
 
-function Add-DotenvPattern {
-	[CmdletBinding()]
-	param(
-		[Parameter(
-			Mandatory,
-			Position = 0,
-			HelpMessage = "A glob pattern to whitelist."
-		)]
-		[string[]]$Pattern
-	)
-	$yes = $false
-	foreach($p in $pattern) {
-		$yes = $script:Dotenv.AuthorizePattern($p) -or $yes
-	}
-	if($yes) {
-		script:update-dotenv -force
-	}
-}
-
-function Remove-DotenvPattern {
-	[CmdletBinding()]
-	param(
-		[Parameter(
-			Mandatory,
-			Position = 0,
-			HelpMessage = "A pattern to remove from the whitelisted patterns."
-		)]
-		[ArgumentCompleter({ $script:Dotenv.AuthorizedPatterns | sort-object })]
-		[string[]]$Pattern
-	)
-	$yes = $false
-	foreach($p in $pattern) {
-		if($script:Dotenv.UnauthorizePattern($p)) {
-			write-information "un-whitelisted $p"
-			$yes = $true
-		} else {
-			write-error "$p is not whitelisted"
-		}
-	}
-	if($yes) {
-		script:update-dotenv -force
-	}
-}
 
 function Debug-Dotenv{
 	Write-Host "psnenvrc fork"
@@ -247,10 +185,7 @@ $exports = @{
 		"Enable-Dotenv"
 		"Disable-Dotenv"
 		"Approve-DotenvFile"
-		"Approve-DotenvDir"
 		"Deny-DotenvFile"
-		"Add-DotenvPattern"
-		"Remove-DotenvPattern"
 		"Debug-Dotenv"
 		"Disable-DotenvAsync"
 		"Get-DotenvHook"
