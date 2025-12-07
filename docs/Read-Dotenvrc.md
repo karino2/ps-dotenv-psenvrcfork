@@ -1,6 +1,6 @@
 ---
-external help file: Dotenv.dll-Help.xml
-Module Name: Dotenv
+external help file: Dotenvrc.dll-Help.xml
+Module Name: Dotenvrc
 online version:
 schema: 2.0.0
 ---

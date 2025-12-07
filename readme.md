@@ -7,7 +7,7 @@ This is the fork of `PS-Dotenv`, which support `.psenvrc` instead of `.env`. `.e
 `.psenvrc` is powershell script.
 Store diff of ENV: and unload when go out of directory.
 
-Command Name is almost the same as PS-Dotenv though it's not `.env` anymore.
+Command Name is almost the same as PS-Dotenv except that Dotenv becomes Dotenvrc.
 
 No bash needs, proper unload after go out.
 
@@ -17,10 +17,7 @@ DONE
 
 - Load `.psenvrc` which exists in whitelist
 - Unload when go out of directory
-
-Not-DONE
-
-- store whitelist
+- Store hash of approved .psenvrc 
 
 ## How to use it
 

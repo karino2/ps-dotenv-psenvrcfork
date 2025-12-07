@@ -1,10 +1,10 @@
-New-Variable -Option ReadOnly Dotenv ([Dotenv.Daemon]::new())
+New-Variable -Option ReadOnly Dotenvrc ([Dotenv.Daemon]::new())
 
 $ExecutionContext.SessionState.Module.OnRemove += {
-	if($global:Dotenv.Enabled) {
+	if($global:Dotenvrc.Enabled) {
 		Write-Host "dotenvrc: unloading..."
-		$global:Dotenv.Disable()
-		remove-item -force -ea silentlyContinue variable:/Dotenv
+		$global:Dotenvrc.Disable()
+		remove-item -force -ea silentlyContinue variable:/Dotenvrc
 	}
 }
 
@@ -20,22 +20,22 @@ function Update-Dotenvrc {
 		return
 	}
 	$script:lastdir = $pwd.providerpath
-	if(!$script:Dotenv.Enabled) {
+	if(!$script:Dotenvrc.Enabled) {
 		Write-Host "dotenvrc: not enabled. Call Enable-Dotenvrc first."
 		return
 	}
 	if($force) {
-		$script:dotenv.clear()
+		$script:Dotenvrc.clear()
 	}
-	$script:dotenv.update($pwd.providerpath)
+	$script:Dotenvrc.update($pwd.providerpath)
 }
 
 function Enable-Dotenvrc {
-	$script:Dotenv.Enabled = $true
+	$script:Dotenvrc.Enabled = $true
 }
 
 function Disable-Dotenvrc {
-	$script:Dotenv.Enabled = $false
+	$script:Dotenvrc.Enabled = $false
 }
 
 function Get-DotenvrcHook {
@@ -69,7 +69,7 @@ function Approve-Dotenvrc {
 	$yes = $false
 	foreach($f in $path) {
 		$f = [System.IO.Path]::GetFullPath($f, $pwd.providerpath)
-		if($script:Dotenv.AuthorizePattern($f, $false)) {
+		if($script:Dotenvrc.AuthorizePattern($f, $false)) {
 			write-information "allowed $f"
 			$yes = $true
 		} else {
@@ -90,13 +90,13 @@ function Deny-Dotenvrc {
 			Position = 0,
 			HelpMessage = "Path to an psenvrc file to deny."
 		)]
-		[ArgumentCompleter({ $script:Dotenv.WhitePaths | where-object { [WildcardPattern]::ContainsWildcardCharacters("$_") } | sort-object })]
+		[ArgumentCompleter({ $script:Dotenvrc.WhitePaths | where-object { [WildcardPattern]::ContainsWildcardCharacters("$_") } | sort-object })]
 		[string[]]$Path
 	)
 	$yes = $false
 	foreach($f in $path) {
 		$f = [System.IO.Path]::GetFullPath($f, $pwd.providerpath)
-		if($script:Dotenv.UnauthorizePattern($f, $false)) {
+		if($script:Dotenvrc.UnauthorizePattern($f, $false)) {
 			write-information "denied $f"
 			$yes = $true
 		} else {
@@ -104,7 +104,7 @@ function Deny-Dotenvrc {
 		}
 	}
 	if($yes) {
-		script:update-dotenv -force
+		script:Update-Dotenvrc -force
 	}
 }
 
@@ -123,7 +123,7 @@ $exports = @{
 		"Debug-Dotenvrc"
 		"Get-DotenvrcHook"
 	)
-	Variable = "Dotenv"
+	Variable = "Dotenvrc"
 	Cmdlet = "Read-Dotenvrc"
 }
 

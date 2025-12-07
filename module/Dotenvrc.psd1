@@ -16,7 +16,7 @@
 		"Get-DotenvrcHook"
 	)
 	CmdletsToExport = @("Read-Dotenvrc")
-	VariablesToExport = @("Dotenv")
+	VariablesToExport = @("Dotenvrc")
 	AliasesToExport = @()
 
 	NestedModules = @("Dotenvrc.dll")

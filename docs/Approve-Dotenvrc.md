@@ -1,6 +1,6 @@
 ---
-external help file: Dotenv-help.xml
-Module Name: Dotenv
+external help file: Dotenvrc-help.xml
+Module Name: Dotenvrc
 online version:
 schema: 2.0.0
 ---
