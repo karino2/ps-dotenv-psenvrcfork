@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Deny-DotenvFile
+# Deny-Dotenvrc
 
 ## SYNOPSIS
 Unauthorizes an env file.
@@ -13,7 +13,7 @@ Unauthorizes an env file.
 ## SYNTAX
 
 ```
-Deny-DotenvFile [-Path] <String[]> [<CommonParameters>]
+Deny-Dotenvrc [-Path] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,7 +25,7 @@ With the safe mode, files not explicitly allowed by you will not be sourced.
 
 ### Example 1
 ```powershell
-PS C:\> Deny-DotenvFile ~\.psenvrc
+PS C:\> Deny-Dotenvrc ~\.psenvrc
 ```
 
 This example unauthorizes `~\.psenvrc`.

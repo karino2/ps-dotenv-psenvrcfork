@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Read-Dotenv
+# Read-Dotenvrc
 
 ## SYNOPSIS
 Parses an env file.
@@ -14,12 +14,12 @@ Parses an env file.
 
 ### file (Default)
 ```
-Read-Dotenv [-Path] <String> [-SkipErrors] [-IgnoreExportPrefix] [<CommonParameters>]
+Read-Dotenvrc [-Path] <String> [-SkipErrors] [-IgnoreExportPrefix] [<CommonParameters>]
 ```
 
 ### text
 ```
-Read-Dotenv [-Text] <String> [-SkipErrors] [-IgnoreExportPrefix] [<CommonParameters>]
+Read-Dotenvrc [-Text] <String> [-SkipErrors] [-IgnoreExportPrefix] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,7 +31,7 @@ You don't have to call this command, the module uses it under the hood.
 
 ### Example 1
 ```powershell
-PS C:\> Read-Dotenv ./.psenvrc
+PS C:\> Read-Dotenvrc ./.psenvrc
 ```
 
 ## PARAMETERS

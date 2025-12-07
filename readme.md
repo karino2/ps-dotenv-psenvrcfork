@@ -31,7 +31,7 @@ Import-Module Dotenvrc
 Invoke-Expression (Get-DotenvHook)
 ```
 
-And `Approve-DotenvFile .psenvrc` for each file you want to approve. 
+And `Approve-Dotenvrc .psenvrc` for each file you want to approve. 
 
 ## .psenvrc example
 

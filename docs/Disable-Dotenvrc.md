@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Disable-Dotenv
+# Disable-Dotenvrc
 
 ## SYNOPSIS
 Disables the module without removing it from the session.
@@ -13,7 +13,7 @@ Disables the module without removing it from the session.
 ## SYNTAX
 
 ```
-Disable-Dotenv
+Disable-Dotenvrc
 ```
 
 ## DESCRIPTION
@@ -24,7 +24,7 @@ Equivalent to `$Dotenv.Enabled = $true`.
 
 ### Example 1
 ```powershell
-PS C:\> Disable-Dotenv
+PS C:\> Disable-Dotenvrc
 ```
 
 ## PARAMETERS

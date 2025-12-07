@@ -2,19 +2,19 @@
 <helpItems xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" schema="maml" xmlns="http://msh">
   <command:command>
     <command:details>
-      <command:name>Read-Dotenv</command:name>
+      <command:name>Read-Dotenvrc</command:name>
       <maml:description>
         <maml:para>Parses an env file.</maml:para>
       </maml:description>
       <command:verb>Read</command:verb>
-      <command:noun>Dotenv</command:noun>
+      <command:noun>Dotenvrc</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Parses an env file. The parsed variables are not sourced, the caller is expected to do it. You don't have to call this command, the module uses it under the hood.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Read-Dotenv</maml:name>
+        <maml:name>Read-Dotenvrc</maml:name>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
           <maml:name>IgnoreExportPrefix</maml:name>
           <maml:description>
@@ -39,7 +39,7 @@ The default behaviour is to stop parsing.</maml:para>
         </command:parameter>
       </command:syntaxItem>
       <command:syntaxItem>
-        <maml:name>Read-Dotenv</maml:name>
+        <maml:name>Read-Dotenvrc</maml:name>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
           <maml:name>IgnoreExportPrefix</maml:name>
           <maml:description>
@@ -125,7 +125,7 @@ The default behaviour is to stop parsing.</maml:para>
         <maml:title>--------- Example 1 ---------</maml:title>
         <maml:introduction>
           <maml:para>```powershell
-PS C:\&gt; Read-Dotenv ./.psenvrc
+PS C:\&gt; Read-Dotenvrc ./.psenvrc
 ```</maml:para>
         </maml:introduction>
         <dev:code />

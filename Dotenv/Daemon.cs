@@ -138,7 +138,7 @@ public class Daemon {
 				if (!this.Quiet && this._warned.Add(f)) {
 					this.log.Info("unauthorized file not sourced while safe mode is on", f);
 					warned = true;
-					System.Console.WriteLine($"dotenv info: {f} is not authorized, authorize it with `Approve-DotenvFile` or disable the safe mode");
+					System.Console.WriteLine($"dotenv info: {f} is not authorized, authorize it with `Approve-Dotenvrc` or disable the safe mode");
 				}
 				continue;
 			}

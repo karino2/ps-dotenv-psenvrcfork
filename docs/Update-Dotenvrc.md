@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Update-Dotenv
+# Update-Dotenvrc
 
 ## SYNOPSIS
 Triggers the module to check for env files in the current and parent directories.
@@ -13,7 +13,7 @@ Triggers the module to check for env files in the current and parent directories
 ## SYNTAX
 
 ```
-Update-Dotenv [-Force] [<CommonParameters>]
+Update-Dotenvrc [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,7 +25,7 @@ This command is meant to be called automatically by your `Prompt` function.
 
 ### Example 1
 ```powershell
-PS C:\> Update-Dotenv
+PS C:\> Update-Dotenvrc
 ```
 
 ## PARAMETERS

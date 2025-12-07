@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Approve-DotenvFile
+# Approve-Dotenvrc
 
 ## SYNOPSIS
 Whitelists a particular env file for dotenv.
@@ -13,7 +13,7 @@ Whitelists a particular env file for dotenv.
 ## SYNTAX
 
 ```
-Approve-DotenvFile [-Path] <String[]> [<CommonParameters>]
+Approve-Dotenvrc [-Path] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,7 +25,7 @@ With the safe mode, files not explicitly allowed by you will not be sourced.
 
 ### Example 1
 ```powershell
-PS C:\> Approve-DotenvFile ~\.psenvrc
+PS C:\> Approve-Dotenvrc ~\.psenvrc
 ```
 
 This example authorizes the file located at `~\.psenvrc`.

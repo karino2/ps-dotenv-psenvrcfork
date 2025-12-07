@@ -2,19 +2,19 @@
 <helpItems xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" schema="maml" xmlns="http://msh">
   <command:command>
     <command:details>
-      <command:name>Approve-DotenvFile</command:name>
+      <command:name>Approve-Dotenvrc</command:name>
       <maml:description>
         <maml:para>Whitelists a particular env file for dotenv.</maml:para>
       </maml:description>
       <command:verb>Approve</command:verb>
-      <command:noun>DotenvFile</command:noun>
+      <command:noun>Dotenvrc</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Whitelists a particular env file for dotenv. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Approve-DotenvFile</maml:name>
+        <maml:name>Approve-Dotenvrc</maml:name>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
           <maml:name>Path</maml:name>
           <maml:description>
@@ -63,7 +63,7 @@
         <maml:title>--------- Example 1 ---------</maml:title>
         <maml:introduction>
           <maml:para>```powershell
-PS C:\&gt; Approve-DotenvFile ~\.psenvrc
+PS C:\&gt; Approve-Dotenvrc ~\.psenvrc
 ```</maml:para>
           <maml:para>&#x80;</maml:para>
           <maml:para>This example authorizes the file located at `~\.psenvrc`.</maml:para>
@@ -76,19 +76,19 @@ PS C:\&gt; Approve-DotenvFile ~\.psenvrc
   </command:command>
   <command:command>
     <command:details>
-      <command:name>Deny-DotenvFile</command:name>
+      <command:name>Deny-Dotenvrc</command:name>
       <maml:description>
         <maml:para>Unauthorizes an env file.</maml:para>
       </maml:description>
       <command:verb>Deny</command:verb>
-      <command:noun>DotenvFile</command:noun>
+      <command:noun>Dotenvrc</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Removes a file from the list of authorized files. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Deny-DotenvFile</maml:name>
+        <maml:name>Deny-Dotenvrc</maml:name>
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
           <maml:name>Path</maml:name>
           <maml:description>
@@ -137,7 +137,7 @@ PS C:\&gt; Approve-DotenvFile ~\.psenvrc
         <maml:title>--------- Example 1 ---------</maml:title>
         <maml:introduction>
           <maml:para>```powershell
-PS C:\&gt; Deny-DotenvFile ~\.psenvrc
+PS C:\&gt; Deny-Dotenvrc ~\.psenvrc
 ```</maml:para>
           <maml:para>&#x80;</maml:para>
           <maml:para>This example unauthorizes `~\.psenvrc`.</maml:para>
@@ -150,19 +150,19 @@ PS C:\&gt; Deny-DotenvFile ~\.psenvrc
   </command:command>
   <command:command>
     <command:details>
-      <command:name>Disable-Dotenv</command:name>
+      <command:name>Disable-Dotenvrc</command:name>
       <maml:description>
         <maml:para>Disables the module without removing it from the session.</maml:para>
       </maml:description>
       <command:verb>Disable</command:verb>
-      <command:noun>Dotenv</command:noun>
+      <command:noun>Dotenvrc</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Disables the module without removing it from the session. Equivalent to `$Dotenv.Enabled = $true`.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Disable-Dotenv</maml:name>
+        <maml:name>Disable-Dotenvrc</maml:name>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters />
@@ -196,7 +196,7 @@ PS C:\&gt; Deny-DotenvFile ~\.psenvrc
         <maml:title>--------- Example 1 ---------</maml:title>
         <maml:introduction>
           <maml:para>```powershell
-PS C:\&gt; Disable-Dotenv
+PS C:\&gt; Disable-Dotenvrc
 ```</maml:para>
         </maml:introduction>
         <dev:code />
@@ -207,19 +207,19 @@ PS C:\&gt; Disable-Dotenv
   </command:command>
   <command:command>
     <command:details>
-      <command:name>Enable-Dotenv</command:name>
+      <command:name>Enable-Dotenvrc</command:name>
       <maml:description>
         <maml:para>Enables the module back.</maml:para>
       </maml:description>
       <command:verb>Enable</command:verb>
-      <command:noun>Dotenv</command:noun>
+      <command:noun>Dotenvrc</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Enables the module back. Equivalent to `$Dotenv.Enabled = $true`.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Enable-Dotenv</maml:name>
+        <maml:name>Enable-Dotenvrc</maml:name>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters />
@@ -253,7 +253,7 @@ PS C:\&gt; Disable-Dotenv
         <maml:title>--------- Example 1 ---------</maml:title>
         <maml:introduction>
           <maml:para>```powershell
-PS C:\&gt; Enable-Dotenv
+PS C:\&gt; Enable-Dotenvrc
 ```</maml:para>
         </maml:introduction>
         <dev:code />
@@ -264,19 +264,19 @@ PS C:\&gt; Enable-Dotenv
   </command:command>
   <command:command>
     <command:details>
-      <command:name>Update-Dotenv</command:name>
+      <command:name>Update-Dotenvrc</command:name>
       <maml:description>
         <maml:para>Triggers the module to check for env files in the current and parent directories.</maml:para>
       </maml:description>
       <command:verb>Update</command:verb>
-      <command:noun>Dotenv</command:noun>
+      <command:noun>Dotenvrc</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Triggers the module to check for env files in the current and parent directories. This is the entrypoint to this module. This command is meant to be called automatically by your `Prompt` function.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Update-Dotenv</maml:name>
+        <maml:name>Update-Dotenvrc</maml:name>
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
           <maml:name>Force</maml:name>
           <maml:description>
@@ -325,7 +325,7 @@ PS C:\&gt; Enable-Dotenv
         <maml:title>--------- Example 1 ---------</maml:title>
         <maml:introduction>
           <maml:para>```powershell
-PS C:\&gt; Update-Dotenv
+PS C:\&gt; Update-Dotenvrc
 ```</maml:para>
         </maml:introduction>
         <dev:code />

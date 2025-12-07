@@ -7,7 +7,7 @@ See the [readme](readme.md).
 This variable is exported and holds the configuration for the entire module.
 You cannot remove or replace it (without force) but you can modify its properties, which take effect immediately.
 
-For example, instead of running `Disable-Dotenv`, you can run `$Dotenv.Enabled = $false`.
+For example, instead of running `Disable-Dotenvrc`, you can run `$Dotenv.Enabled = $false`.
 
 ## Configuration
 The `$Dotenv` variable is how you configure the modules behaviour.
@@ -15,26 +15,26 @@ These are its fields:
 
 -	`Enabled`: Turns the module on and off.
 -	`LoggingPreference`: Configures how the logs are written, you can tab through its fields.
--	`Parallel`: If set to true, everytime `Update-Dotenv` is called, it will be done in a new thread therefore will not block.
+-	`Parallel`: If set to true, everytime `Update-Dotenvrc` is called, it will be done in a new thread therefore will not block.
 -	`Names`: Controls which names are considered env files. You should either call its methods `AddName()` and `RemoveName()` or use the cmdlets `Register-DotenvName` and `Unregister-DotenvName`.
 -	`SkipErrors`: If set to true, errors encountered during parsing env files will cause the parser to skip to the next line instead of returning.
 -	`SafeMode`: If enabled, only the files explicitly allowed will be sourced.
 -	`Quiet`: If set to `$true`, disables info messages while the safe mode is enabled and there are unauthorized files in the current directory or its parents.
 
-## Read-Dotenv
+## Read-Dotenvrc
 Parses an env file. The parsed variables are not sourced, the caller is expected to do it. You don't have to call this command, the module uses it under the hood.
 
-## Disable-Dotenv
+## Disable-Dotenvrc
 Disables the module without removing it from the session. Equivalent to `$Dotenv.Enabled = $true`.
 
-## Enable-Dotenv
+## Enable-Dotenvrc
 Enables the module back. Equivalent to `$Dotenv.Enabled = $true`.
 
-## Update-Dotenv
+## Update-Dotenvrc
 Triggers the module to check for env files in the current and parent directories. This is the entrypoint to this module. This command is meant to be called automatically by your `Prompt` function.
 
-## Approve-DotenvFile
+## Approve-Dotenvrc
 Whitelists a particular env file for dotenv. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.
 
-## Deny-DotenvFile
+## Deny-Dotenvrc
 Removes a file from the list of authorized files. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.

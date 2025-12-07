@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Enable-Dotenv
+# Enable-Dotenvrc
 
 ## SYNOPSIS
 Enables the module back.
@@ -13,7 +13,7 @@ Enables the module back.
 ## SYNTAX
 
 ```
-Enable-Dotenv
+Enable-Dotenvrc
 ```
 
 ## DESCRIPTION
@@ -24,7 +24,7 @@ Equivalent to `$Dotenv.Enabled = $true`.
 
 ### Example 1
 ```powershell
-PS C:\> Enable-Dotenv
+PS C:\> Enable-Dotenvrc
 ```
 
 ## PARAMETERS
