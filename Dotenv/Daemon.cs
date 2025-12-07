@@ -128,7 +128,7 @@ public class Daemon {
 				if (!this.Quiet && this._warned.Add(f)) {
 					this.log.Info("unauthorized file not sourced while safe mode is on", f);
 					warned = true;
-					System.Console.WriteLine($"dotenv info: {f} is not authorized, authorize it with `Approve-Dotenvrc` or disable the safe mode");
+					System.Console.WriteLine($"dotenvrc info: {f} is not authorized, authorize it with `Approve-Dotenvrc` or disable the safe mode");
 				}
 				continue;
 			}
@@ -141,7 +141,7 @@ public class Daemon {
 			}
 		}
 
-		if (warned) System.Console.WriteLine("You can turn this message off by setting `$Dotenv.Quiet = $true`");
+		if (warned) System.Console.WriteLine("You can turn this message off by setting `$Dotenvrc.Quiet = $true`");
 	}
 
 
