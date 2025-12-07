@@ -1,6 +1,6 @@
 - PS-Dotenv: https://github.com/insomnimus/ps-dotenv
 
-# PS-Dotenv-Psenvrc fork
+# PS-Dotenvrc, Psenvrc fork of dotenv
 
 This is the fork of `PS-Dotenv`, which support `.psenvrc` instead of `.env`. `.env` is not supported.
 
@@ -25,7 +25,7 @@ In $PROFILE,
 
 ```PowerShell
 Import-Module Dotenvrc
-Invoke-Expression (Get-DotenvHook)
+Invoke-Expression (Get-DotenvrcHook)
 ```
 
 And `Approve-Dotenvrc .psenvrc` for each file you want to approve. 
@@ -39,3 +39,9 @@ $Env:Path += ';C:\Qt\6.8.3\msvc2022_64\bin\'
 $env:MY_QT_LIB_PATH = (qmake -query QT_INSTALL_LIBS).Trim()
 $env:MY_QT_INCLUDE_PATH = (qmake -query QT_INSTALL_HEADERS).Trim()
 ```
+
+## Differences between alternatives
+
+- [direnv – unclutter your .profile - direnv](https://direnv.net/) Original direnv, PowerShell support exists but needs bash.
+- [insomnimus/ps-dotenv: A feature complete and unintrusive direnv for Powershell Core](https://github.com/insomnimus/ps-dotenv) Original ps-dotenv, which I forked from. Proper unloading and parent dir search, which portable .env. But no .envrc related feature.
+- [takekazuomi/posh-direnv: powershell directory environment switcher](https://github.com/takekazuomi/posh-direnv) Simple .psenvrc loader, no unload and no parent dir search, which make it difficult to cooperate with ZLocation.
