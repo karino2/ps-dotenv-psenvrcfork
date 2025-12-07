@@ -1,12 +1,11 @@
 @{
 	RootModule = "Dotenvrc.psm1"
-	ModuleVersion = "1.0.0"
+	ModuleVersion = "1.0.1"
 	Author = "Kazuma Arino<hogeika2@gmail.com>"
 	CompatiblePSEditions = @("Core", "Desktop")
 	GUID = '16dd6f1b-7e4e-45fb-80d4-fbc5b18ad0a5'
 	PowerShellVersion = "6.0"
-	Description="Execute approved .psenvrc file and store diff, then unload when go out of that directory. Similar to direnv with powershell instead of bash."
-	ProjectUri="https://github.com/karino2/ps-dotenv-psenvrcfork/"
+	Description="Execute approved .psenvrc file and store diff, then unload when go out of that directory. Similar to direnv with powershell instead of bash. PS-Dotenv fork to use .psenvrc"
 
 	FunctionsToExport = @(
 		"Update-Dotenvrc"
@@ -23,4 +22,10 @@
 	AliasesToExport = @()
 
 	NestedModules = @("Dotenvrc.dll")
+
+	PrivateData = @{
+		PSData = @{
+			ProjectUri = "https://github.com/karino2/ps-dotenv-psenvrcfork/"
+		}
+	}
 }
