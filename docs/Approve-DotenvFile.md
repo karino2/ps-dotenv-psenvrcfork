@@ -25,10 +25,10 @@ With the safe mode, files not explicitly allowed by you will not be sourced.
 
 ### Example 1
 ```powershell
-PS C:\> Approve-DotenvFile ~\.env
+PS C:\> Approve-DotenvFile ~\.psenvrc
 ```
 
-This example authorizes the file located at `~\.env`.
+This example authorizes the file located at `~\.psenvrc`.
 
 ## PARAMETERS
 

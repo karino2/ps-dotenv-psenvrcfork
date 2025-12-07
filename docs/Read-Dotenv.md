@@ -31,7 +31,7 @@ You don't have to call this command, the module uses it under the hood.
 
 ### Example 1
 ```powershell
-PS C:\> Read-Dotenv ./.env
+PS C:\> Read-Dotenv ./.psenvrc
 ```
 
 ## PARAMETERS

@@ -25,15 +25,15 @@ With the safe mode, files not explicitly allowed by you will not be sourced.
 
 ### Example 1
 ```powershell
-PS C:\> Deny-DotenvFile ~\.env
+PS C:\> Deny-DotenvFile ~\.psenvrc
 ```
 
-This example unauthorizes `~\.env`.
+This example unauthorizes `~\.psenvrc`.
 
 ## PARAMETERS
 
 ### -Path
-Path to an env file to deny.
+Path to an psenvrc file to deny.
 
 ```yaml
 Type: String[]

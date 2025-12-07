@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<helpItems schema="maml" xmlns="http://msh">
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" schema="maml" xmlns="http://msh">
+  <command:command>
     <command:details>
       <command:name>Approve-DotenvFile</command:name>
-      <command:verb>Approve</command:verb>
-      <command:noun>DotenvFile</command:noun>
       <maml:description>
         <maml:para>Whitelists a particular env file for dotenv.</maml:para>
       </maml:description>
+      <command:verb>Approve</command:verb>
+      <command:noun>DotenvFile</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Whitelists a particular env file for dotenv. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.</maml:para>
@@ -15,78 +15,73 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Approve-DotenvFile</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
           <maml:name>Path</maml:name>
           <maml:description>
             <maml:para>Path to an env file to allow.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
-          <dev:type>
-            <maml:name>String[]</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
         <maml:name>Path</maml:name>
         <maml:description>
           <maml:para>Path to an env file to allow.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
-        <dev:type>
-          <maml:name>String[]</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para />
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Approve-DotenvFile ~\.env</dev:code>
-        <dev:remarks>
-          <maml:para>This example authorizes the file located at `~\.env`.</maml:para>
-        </dev:remarks>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Approve-DotenvFile ~\.psenvrc
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>This example authorizes the file located at `~\.psenvrc`.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
       </command:example>
     </command:examples>
     <command:relatedLinks />
   </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <command:command>
     <command:details>
       <command:name>Deny-DotenvFile</command:name>
-      <command:verb>Deny</command:verb>
-      <command:noun>DotenvFile</command:noun>
       <maml:description>
         <maml:para>Unauthorizes an env file.</maml:para>
       </maml:description>
+      <command:verb>Deny</command:verb>
+      <command:noun>DotenvFile</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Removes a file from the list of authorized files. This only has an effect with the safe mode enabled. With the safe mode, files not explicitly allowed by you will not be sourced.</maml:para>
@@ -94,78 +89,73 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Deny-DotenvFile</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
           <maml:name>Path</maml:name>
           <maml:description>
-            <maml:para>Path to an env file to deny.</maml:para>
+            <maml:para>Path to an psenvrc file to deny.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
-          <dev:type>
-            <maml:name>String[]</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
         <maml:name>Path</maml:name>
         <maml:description>
-          <maml:para>Path to an env file to deny.</maml:para>
+          <maml:para>Path to an psenvrc file to deny.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
-        <dev:type>
-          <maml:name>String[]</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para />
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Deny-DotenvFile ~\.env</dev:code>
-        <dev:remarks>
-          <maml:para>This example unauthorizes `~\.env`.</maml:para>
-        </dev:remarks>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Deny-DotenvFile ~\.psenvrc
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>This example unauthorizes `~\.psenvrc`.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
       </command:example>
     </command:examples>
     <command:relatedLinks />
   </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <command:command>
     <command:details>
       <command:name>Disable-Dotenv</command:name>
-      <command:verb>Disable</command:verb>
-      <command:noun>Dotenv</command:noun>
       <maml:description>
         <maml:para>Disables the module without removing it from the session.</maml:para>
       </maml:description>
+      <command:verb>Disable</command:verb>
+      <command:noun>Dotenv</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Disables the module without removing it from the session. Equivalent to `$Dotenv.Enabled = $true`.</maml:para>
@@ -179,47 +169,50 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para />
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Disable-Dotenv</dev:code>
-        <dev:remarks>
-          <maml:para></maml:para>
-        </dev:remarks>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Disable-Dotenv
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
       </command:example>
     </command:examples>
     <command:relatedLinks />
   </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <command:command>
     <command:details>
       <command:name>Enable-Dotenv</command:name>
-      <command:verb>Enable</command:verb>
-      <command:noun>Dotenv</command:noun>
       <maml:description>
         <maml:para>Enables the module back.</maml:para>
       </maml:description>
+      <command:verb>Enable</command:verb>
+      <command:noun>Dotenv</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Enables the module back. Equivalent to `$Dotenv.Enabled = $true`.</maml:para>
@@ -233,47 +226,50 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para />
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Enable-Dotenv</dev:code>
-        <dev:remarks>
-          <maml:para></maml:para>
-        </dev:remarks>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Enable-Dotenv
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
       </command:example>
     </command:examples>
     <command:relatedLinks />
   </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <command:command>
     <command:details>
       <command:name>Register-DotenvName</command:name>
-      <command:verb>Register</command:verb>
-      <command:noun>DotenvName</command:noun>
       <maml:description>
         <maml:para>Adds a new name to the list of env file names this module will check for.</maml:para>
       </maml:description>
+      <command:verb>Register</command:verb>
+      <command:noun>DotenvName</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Adds a new name to the list of env file names this module will check for. Equivalent to `$Dotenv.AddName()`.</maml:para>
@@ -281,78 +277,73 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Register-DotenvName</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
           <maml:name>Name</maml:name>
           <maml:description>
-            <maml:para>The name to add. The name must be a valid filename and not a path.</maml:para>
+            <maml:para>The name to add.
+The name must be a valid filename and not a path.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
         <maml:name>Name</maml:name>
         <maml:description>
-          <maml:para>The name to add. The name must be a valid filename and not a path.</maml:para>
+          <maml:para>The name to add.
+The name must be a valid filename and not a path.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-        <dev:type>
-          <maml:name>String</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para />
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Register-Dotenvname .myCustomEnv</dev:code>
-        <dev:remarks>
-          <maml:para></maml:para>
-        </dev:remarks>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Register-Dotenvname .myCustomEnv
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
       </command:example>
     </command:examples>
     <command:relatedLinks />
   </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <command:command>
     <command:details>
       <command:name>Unregister-DotenvName</command:name>
-      <command:verb>Unregister</command:verb>
-      <command:noun>DotenvName</command:noun>
       <maml:description>
         <maml:para>Removes a name from the list of names this module will consider as an env file.</maml:para>
       </maml:description>
+      <command:verb>Unregister</command:verb>
+      <command:noun>DotenvName</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Removes a name from the list of names this module will consider as an env file. Equivalent to `$Dotenv.RemoveName()`.</maml:para>
@@ -360,81 +351,71 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Unregister-DotenvName</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
           <maml:name>Name</maml:name>
           <maml:description>
             <maml:para>The name to remove.</maml:para>
           </maml:description>
-          <command:parameterValueGroup>
-            <command:parameterValue required="false" command:variableLength="false">.env</command:parameterValue>
-          </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
         <maml:name>Name</maml:name>
         <maml:description>
           <maml:para>The name to remove.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-        <dev:type>
-          <maml:name>String</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para />
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Unregister-DotenvName .env</dev:code>
-        <dev:remarks>
-          <maml:para></maml:para>
-        </dev:remarks>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Unregister-DotenvName .env
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
       </command:example>
     </command:examples>
     <command:relatedLinks />
   </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <command:command>
     <command:details>
       <command:name>Update-Dotenv</command:name>
-      <command:verb>Update</command:verb>
-      <command:noun>Dotenv</command:noun>
       <maml:description>
         <maml:para>Triggers the module to check for env files in the current and parent directories.</maml:para>
       </maml:description>
+      <command:verb>Update</command:verb>
+      <command:noun>Dotenv</command:noun>
     </command:details>
     <maml:description>
       <maml:para>Triggers the module to check for env files in the current and parent directories. This is the entrypoint to this module. This command is meant to be called automatically by your `Prompt` function.</maml:para>
@@ -442,65 +423,59 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Update-Dotenv</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
           <maml:name>Force</maml:name>
           <maml:description>
             <maml:para>Forces the module to reload every env file if any.</maml:para>
           </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
+          <command:parameterValue required="false" variableLength="true">SwitchParameter</command:parameterValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
         <maml:name>Force</maml:name>
         <maml:description>
           <maml:para>Forces the module to reload every env file if any.</maml:para>
         </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
+        <command:parameterValue required="false" variableLength="true">SwitchParameter</command:parameterValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <dev:name>None</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <dev:name>System.Object</dev:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para />
         </maml:description>
       </command:returnValue>
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para />
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Update-Dotenv</dev:code>
-        <dev:remarks>
-          <maml:para></maml:para>
-        </dev:remarks>
+        <maml:title>--------- Example 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```powershell
+PS C:\&gt; Update-Dotenv
+```</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
       </command:example>
     </command:examples>
     <command:relatedLinks />
