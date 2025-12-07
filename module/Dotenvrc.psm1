@@ -77,7 +77,7 @@ function Approve-Dotenvrc {
 		}
 	}
 	if($yes) {
-		script:update-dotenv -force
+		script:Update-Dotenvrc -force
 	}
 }
 

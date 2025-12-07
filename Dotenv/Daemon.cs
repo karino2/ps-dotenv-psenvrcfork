@@ -15,6 +15,7 @@ public class Daemon {
 
 	private bool _enabled = true;
 	private List<string> _names = new List<string>() { ".psenvrc" };
+	private string _name = ".psenvrc";
 	private List<DotenvFile> _sourced = new List<DotenvFile>(32) { };
 	public bool SkipErrors = false;
 	private Logger log = new Logger();
@@ -38,15 +39,6 @@ public class Daemon {
 	public bool Quiet = false;
 	private HashSet<string> _warned;
 
-	public List<string> Names {
-		get => this._names;
-		set {
-			if (value is null) this._names.Clear();
-			else this._names = value;
-			this.Clear();
-			this.Update(this.lastdir);
-		}
-	}
 
 	public IList<DotenvFile> Sourced => this._sourced.AsReadOnly();
 	public MemBuf<LogEntry> Logs => this.log.Logs;
@@ -87,8 +79,8 @@ public class Daemon {
 		this.log.Debug($"update called in {pwd}");
 		if(String.IsNullOrEmpty(pwd)) return;
 		this.lastdir = pwd;
-		if (!this._enabled || this._names.Count == 0) {
-			this.log.Debug("nothing to do because the module is disabled or there are no names");
+		if (!this._enabled) {
+			this.log.Debug("nothing to do because the module is disabled");
 			return;
 		}
 
@@ -113,11 +105,9 @@ public class Daemon {
 		var dir = pwd;
 
 		while (true) {
-			foreach (var name in this._names) {
-				var filepath = Path.Join(dir, name);
-				if (File.Exists(filepath) && (!ignoreSourced || !this.pathIsSourced(filepath)))
-					files.Add(filepath);
-			}
+			var filepath = Path.Join(dir, _name);
+			if (File.Exists(filepath) && (!ignoreSourced || !this.pathIsSourced(filepath)))
+				files.Add(filepath);
 
 			if (string.IsNullOrEmpty(dir) || dir.EndsInSeparator()) break;
 			else dir = Path.GetDirectoryName(dir);
@@ -157,6 +147,12 @@ public class Daemon {
 
 	public bool AuthorizePattern(string path, bool update = false) {
 		var fullpath = Path.GetFullPath(path);
+
+		// When directory specified, use directory + .psenvrc as argument.
+		// This is like the situation of  "Approve-Dotenvrc .".
+		if (Directory.Exists(fullpath)) {
+			fullpath = Path.Combine(fullpath, _name);
+		}
 		var ok = this.auth.Add(fullpath);
 		this._warned.Remove(fullpath);
 		if (ok && this.SafeMode) {
